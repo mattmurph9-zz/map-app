@@ -10,7 +10,12 @@ var locations = [
     {title: 'GotIt!', location: {lat: 37.57847, lng: -122.34838}, visible: ko.observable(true)},
     {title: 'Apple', location: {lat: 37.332, lng: -122.03078}, visible: ko.observable(true)},
     {title: 'Facebook', location: {lat: 37.48507, lng: -122.14742}, visible: ko.observable(true)},
-    {title: 'Google', location: {lat: 37.42199, lng: -122.08405}, visible: ko.observable(true)}
+    {title: 'Google', location: {lat: 37.42199, lng: -122.08405}, visible: ko.observable(true)},
+    {title: 'Lyft', location: {lat: 37.7771, lng: -122.3931}, visible: ko.observable(true)},
+    {title: 'HP', location: {lat: 37.41232, lng: -122.14799}, visible: ko.observable(true)},
+    {title: 'Netflix', location: {lat: 37.25958, lng: -121.96269}, visible: ko.observable(true)},
+    {title: 'Oracle', location: {lat: 37.39329, lng: -121.95213}, visible: ko.observable(true)},
+    {title: 'Tesla', location: {lat: 37.3947, lng: -122.15032}, visible: ko.observable(true)}
   ];
   var infowindow = null;
 function initMap() {
