@@ -22,8 +22,6 @@ function initMap() {
     zoom: 10,
     mapTypeControl: false
   });
-  // These are the real estate listings that will be shown to the user.
-  // Normally we'd have these in a database instead.
   
   infowindow = new google.maps.InfoWindow();
   // Style the markers a bit. This will be our listing marker icon.
@@ -77,9 +75,7 @@ function getMarkerByLocation(location) {
     } 
   }
 }
-// This function populates the infowindow when the marker is clicked. We'll only allow
-// one infowindow which will open at the marker that is clicked, and populate based
-// on that markers position.
+
 function populateInfoWindow(marker, infowindow) {
   // Check to make sure the infowindow is not already opened on this marker.
   if (infowindow.marker != marker) {
@@ -94,9 +90,7 @@ function populateInfoWindow(marker, infowindow) {
     var radius = 50;
     var content = '';
     var content2='';
-    // In case the status is OK, which means the pano was found, compute the
-    // position of the streetview image, then calculate the heading, then get a
-    // panorama from that and set the options
+    
     /*
     function getStreetView(data, status) {
       if (status == google.maps.StreetViewStatus.OK) {
@@ -125,7 +119,7 @@ function populateInfoWindow(marker, infowindow) {
     // 50 meters of the markers position
     streetViewService.getPanoramaByLocation(marker.position, radius, getStreetView);
     */
-    //add yelp information
+    //add foursquare information
     var url = 'https://api.foursquare.com/v2/venues/explore?';
     url += 'client_id=' + fsClientId + '&';
     url += 'client_secret=' + fsClientSecret + '&'
@@ -149,11 +143,8 @@ function populateInfoWindow(marker, infowindow) {
               content += '<p>Distance: ' + items[i].venue.location.distance + 'm</p>'
             }
             infowindow.setContent(content);
-            //infoWindow.marker = marker;
-            //infoWindow.setContent(content);
-            //marker.setAnimation(null);
         }).fail(function() {
-            alert('failed to fetch nearby restaurants');
+            alert('failed to fetch nearby places');
             marker.setAnimation(null);
         });
 
@@ -202,13 +193,8 @@ var MapViewModel = function() {
   self.showSelected = function(place) { 
       console.log(place.title);
       var marker = getMarkerByLocation(place);
-      google.maps.event.trigger(marker, 'click')
+      google.maps.event.trigger(marker, 'click');
     }
-
-  self.showListItem = function(place){
-    console.log("checking visibility for " + place.title);
-    return false;
-  }
 
     self.filterText.subscribe(function(newValue) {
       for(var i = 0; i < self.places().length; i++){
