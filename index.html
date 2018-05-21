@@ -10,7 +10,7 @@
         <div>
           <input id="filter" type="text" data-bind="value: filterText" placeholder="Filter List">
           <ul data-bind="foreach: places">
-            <li data-bind="visible: visible()"><span data-bind="text: title, click: $root.showSelected"></span></li>
+            <li class="list-item" data-bind="visible: visible(), click: $root.showSelected" onmouseleave="this.style.background='white'" onmouseover="this.style.background='#d3d3d3'"><span data-bind="text: title"></span></li>
           </ul>
           
         </div>

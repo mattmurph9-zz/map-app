@@ -2,6 +2,8 @@ var fsClientId = '2JWLLGNETKFLPRN5QQW1HVUMRASWDSQBJOR4QWD44MVOJCBH'
 var fsClientSecret = 'ULVLGGM5YRR5J45X5T3GK3UYJMGL31VKL0MI1JFHBNNJNB2F'
 
 var map;
+var defaultIcon;
+var highlightedIcon;
 // Create a new blank array for all the listing markers.
 var markers = [];
 var locations = [
@@ -30,10 +32,10 @@ function initMap() {
   
   infowindow = new google.maps.InfoWindow();
   // Style the markers a bit. This will be our listing marker icon.
-  var defaultIcon = makeMarkerIcon('0091ff');
+  defaultIcon = makeMarkerIcon('0091ff');
   // Create a "highlighted location" marker color for when the user
   // mouses over the marker.
-  var highlightedIcon = makeMarkerIcon('FFFF24');
+  highlightedIcon = makeMarkerIcon('FFFF24');
   // The following group uses the location array to create an array of markers on initialize.
   for (var i = 0; i < locations.length; i++) {
     // Get the position from the location array.
@@ -71,7 +73,6 @@ function initMap() {
   document.getElementById('show-listings').addEventListener('click', showListings);
   document.getElementById('hide-listings').addEventListener('click', hideListings);
 }
-
 
 function getMarkerByLocation(location) {
   for (var i = 0; i < markers.length; i++) {
@@ -141,6 +142,7 @@ function populateInfoWindow(marker, infowindow) {
     var items;
      $.get(url, function(data, status){
             items = data.response.groups[0].items;
+            content += '<h2>' + marker.title +'</h2>'
             content += '<h4>Nearby Points of Interest: </h4>';
             for(var i=0; i<items.length; i++){
               console.log(items[i].venue.name);
